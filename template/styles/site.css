@@ -1,1 +1,31 @@
 /* You can add styles here */
+#container {
+	max-width: 1100px;
+	margin: auto;
+}
+
+#products {
+	display: flex;
+  	align-items: flex-start;
+  	flex-wrap: wrap;
+  	height: 100%;
+}
+
+.item-container {
+	width: 40%;
+	margin: 10px;
+	border: 1px solid #000;
+}
+
+.item-name {
+	
+}
+
+.item-image {
+
+}
+
+.item-price {
+
+}
+

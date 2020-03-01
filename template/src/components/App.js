@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import Bubbles from './Bubbles';
+import Bubble from './Bubble';
 import Bundles from './Bundles';
 import About from './About';
 import Cart from './Cart';
@@ -19,7 +20,7 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/bubbles">Bubbles</Link>
+              <Link to="/bubbles">Products</Link>
             </li>
             <li>
               <Link to="/bundles">Bundles</Link>
@@ -34,6 +35,7 @@ export default function App() {
         </nav>
 
         <Switch>
+          <Route path="/bubbles/:bubbleId" component={Bubble} />
           <Route path="/bubbles">
             <Bubbles />
           </Route>

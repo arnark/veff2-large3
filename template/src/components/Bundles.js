@@ -11,8 +11,7 @@ export default function Bundles() {
       fetch('http://localhost:3500/api/bundles')
       .then(response => response.json())
       .then(function(data) {
-        let result = JSON.parse(JSON.stringify(data));
-        updateBundles(result);
+        updateBundles(data);
       });
     }
   

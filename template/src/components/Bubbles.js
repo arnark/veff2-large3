@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 export default function Bubbles() {
     const [ bubbles, updateBubbles ] = useState([]);
@@ -11,28 +12,27 @@ export default function Bubbles() {
       fetch('http://localhost:3500/api/bubbles')
       .then(response => response.json())
       .then(function(data) {
-        let result = JSON.parse(JSON.stringify(data));
-        updateBubbles(result);
+        updateBubbles(data);
       });
     }
   
     return (
-      <div>
-        <table>
-          <tbody>
-            {bubbles.map((data, i) => {
-              return (
-                <tr key={i}>
-                  <td>{data.id}</td>
-                  <td>{data.name}</td>
-                  <td>{data.description}</td>
-                  <td>{data.price}</td>
-                  <td>{data.image}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+      <div id="products">
+        {bubbles.map((data) => {
+          return (
+          <Link to={`/bubbles/${data.id}`} className="item-container" key={data.id}>
+            <div className="item-name">
+              <p>{data.name}</p>
+            </div>
+            <div className="item-image">
+              <img src={data.image} />
+            </div>
+            <div className="item-price">
+              <p>{data.price}</p>
+            </div>
+          </Link>
+        )})
+        }
       </div>
     )
-  }
+}
