@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AddToCart from '../services/common.js';
 
 export default function Bubble(props) {
     const { bubbleId } = props.match.params;
@@ -19,37 +20,31 @@ export default function Bubble(props) {
 
     if (bubble !== undefined) {
         return (
-            <div id="products">
-              {bubble.map((data) => {
-                return (
-              <div className="item-container" key={data.id}>
-      
-                <div className="item-name">
-                  <p>{data.name}</p>
-                </div>
-      
-                <div className="item-image">
-                  <img src={data.image} />
-                </div>
-
-                <div className="item-description">
-                  <p>{data.description}</p>
-                </div>
-      
-                <div className="item-price">
-                  <p>{data.price}</p>  
-                </div>
-                
-              </div>
-              )})
-            }
-            </div>
+         <div id="products">
+           {bubble.map((data) => {
+             return (
+           <div className="item-container" key={data.id}>
+             <div className="item-name">
+               <p>{data.name}</p>
+             </div>
+             <div className="item-image">
+               <img src={data.image} />
+             </div>
+             <div className="item-description">
+               <p>{data.description}</p>
+             </div>
+             <div className="item-price">
+               <p>{data.price}</p>  
+             </div>
+           </div>
+            )})
+           }
+         </div>
         )
     } else {
         return (
             <div>
                 <h1>Bubble not found.</h1>
-                <p>Please try again.</p>
             </div>
           )
     }
