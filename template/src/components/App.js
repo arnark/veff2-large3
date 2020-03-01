@@ -12,6 +12,7 @@ import Bubble from './Bubble';
 import Bundles from './Bundles';
 import About from './About';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 export default function App() {
   return (
@@ -47,6 +48,9 @@ export default function App() {
           </Route>
           <Route path="/cart">
             <Cart />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
           <Route path="/">
             <Bubbles />

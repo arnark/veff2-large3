@@ -23,20 +23,20 @@ export default function Bubble(props) {
          <div id="products">
            {bubble.map((data) => {
              return (
-           <div className="item-container" key={data.id}>
-             <div className="item-name">
-               <p>{data.name}</p>
-             </div>
-             <div className="item-image">
-               <img src={data.image} />
-             </div>
-             <div className="item-description">
-               <p>{data.description}</p>
-             </div>
-             <div className="item-price">
-               <p>{data.price}</p>  
-             </div>
-           </div>
+                <div className="item-container" key={data.id}>
+                  <div className="item-name">
+                    <p>{data.name}</p>
+                  </div>
+                  <div className="item-image">
+                    <img src={data.image} />
+                  </div>
+                  <div className="item-description">
+                    <p>{data.description}</p>
+                  </div>
+                  <div className="item-price">
+                    <p>{data.price}</p>  
+                  </div>
+                </div>
             )})
            }
          </div>

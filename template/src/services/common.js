@@ -10,5 +10,5 @@ export default function AddToCart(bubbleId) {
     cartItems = JSON.stringify(cartItems);
     localStorage.setItem("cartItems", cartItems);
     
-    alert("Product " + bubbleId + " added to cart... #todo, bæta við html overlay í staðin fyrir þetta");
+    // alert("Product " + bubbleId + " added to cart... #todo, bæta við html overlay í staðin fyrir þetta");
 }
