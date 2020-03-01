@@ -31,6 +31,10 @@ export default function Bubble(props) {
                 <div className="item-image">
                   <img src={data.image} />
                 </div>
+
+                <div className="item-description">
+                  <p>{data.description}</p>
+                </div>
       
                 <div className="item-price">
                   <p>{data.price}</p>  
