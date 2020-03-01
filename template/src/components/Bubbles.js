@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import AddToCart from '../services/common.js';
+import AddToCart from '../services/common';
 
 import CheckoutOverlay from './CheckoutOverlay';
 
