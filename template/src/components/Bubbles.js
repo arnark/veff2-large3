@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import AddToCart from '../services/common';
+import { AddToCart } from '../services/common';
 
 import CheckoutOverlay from './CheckoutOverlay';
 
@@ -26,10 +26,8 @@ export default function Bubbles() {
       fetch('http://localhost:3500/api/bubbles')
       .then(response => response.json())
       .then(function(data) {
-        if (addedBubble !== -1) {
-          let newBubble = data.find(b => b.id == bubbleId);
-          updateAddedBubble([newBubble]);
-        }
+        let newBubble = data.find(b => b.id == bubbleId);
+        updateAddedBubble([newBubble]);
       });
     }
 

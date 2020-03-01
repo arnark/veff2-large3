@@ -1,4 +1,4 @@
-export default function AddToCart(bubbleId) {
+export function AddToCart(bubbleId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems"));
     if (cartItems === null) { cartItems = {} }
     
@@ -9,6 +9,10 @@ export default function AddToCart(bubbleId) {
     }    
     cartItems = JSON.stringify(cartItems);
     localStorage.setItem("cartItems", cartItems);
-    
-    // alert("Product " + bubbleId + " added to cart... #todo, bæta við html overlay í staðin fyrir þetta");
+}
+
+export function AddBundleToCart(bubbles) {
+    for (let i = 0; i < bubbles.length; i++) {
+        AddToCart(bubbles[i].id);
+    }
 }

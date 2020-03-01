@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddToCart from '../services/common';
+import { AddToCart } from '../services/common';
 
 import CheckoutOverlay from './CheckoutOverlay';
 
@@ -7,7 +7,6 @@ export default function Bubble(props) {
     const { bubbleId } = props.match.params;
     const [ show, toggleOverlay ] = useState(false);
     const [ bubble, updateBubble ] = useState([]);
-    //const [ addedBubble, updateAddedBubble ] = useState([]);
   
     useEffect(() => {
       getBubble();
