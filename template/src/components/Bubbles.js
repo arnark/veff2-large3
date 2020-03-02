@@ -18,7 +18,6 @@ export default function Bubbles() {
       fetch('http://localhost:3500/api/bubbles')
       .then(response => response.json())
       .then(function(data) {
-        console.log(data)
         updateBubbles(data);
       });
     }
@@ -50,22 +49,18 @@ export default function Bubbles() {
     return (
       <div>
         <CheckoutOverlay show={show} handleClose={() => hideOverlay()} bubble={addedBubble} />
-        <div id="products">
+        <div id="products" className="my-2">
           {bubbles.map((data) => {
             return (
-              <div className="item-container" id={data.id} key={data.id}>
+              <div className="item-container">
                 <Link to={`/bubbles/${data.id}`}>
-                  <div className="item-name">
-                    <p>{data.name}</p>
-                  </div>
-                  <div className="item-image">
-                    <img src={data.image} />
-                  </div>
-                  <div className="item-price">
-                    <p>{data.price}</p>
+                  <div className="card text-center text-dark mb-1" id={data.id} key={data.id}>
+                    <h4 className="card-header">{data.name}</h4>
+                    <img className="card-img-top" src={data.image} />
+                    <p>{data.price} ISK</p>
                   </div>
                 </Link>
-                <button className="addToCart" onClick={() => handleAddToCart(data.id)}>Add to Cart</button>
+                <button className="btn btn-block btn-outline-success addToCart" onClick={() => handleAddToCart(data.id)}>Add to Cart</button>
               </div>
           )})
           }
