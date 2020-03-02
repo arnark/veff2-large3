@@ -6,8 +6,8 @@ import CheckoutOverlay from './CheckoutOverlay';
 
 export default function Bubbles() {
     const [ bubbles, updateBubbles ] = useState([]);
-    const [ show, toggleOverlay ] = useState(false);
     const [ addedBubble, updateAddedBubble ] = useState([]);
+    const [ show, toggleOverlay ] = useState(false);
   
     useEffect(() => {
       getBubbles();
@@ -23,12 +23,8 @@ export default function Bubbles() {
     }
 
     function getBubble(bubbleId) {
-      fetch('http://localhost:3500/api/bubbles')
-      .then(response => response.json())
-      .then(function(data) {
-        let newBubble = data.find(b => b.id == bubbleId);
-        updateAddedBubble([newBubble]);
-      });
+      let newBubble = bubbles.find(b => b.id == bubbleId);
+      updateAddedBubble([newBubble]);
     }
 
     function handleAddToCart(bubbleId) {

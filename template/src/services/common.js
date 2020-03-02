@@ -20,7 +20,6 @@ export function AddBundleToCart(bubbles) {
 export function ClearCart() {
     localStorage.removeItem("cartItems");
     alert("Cart cleared successfully");
-    //location.reload();
 }
 
 export function GetCartItems() {

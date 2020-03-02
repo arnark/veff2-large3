@@ -11,18 +11,15 @@ export default function Cart() {
 
   function getItemObjects() {
     let cartItemIds = GetCartItems();
-    console.log(cartItemIds)
 
     let cartItemObjects = [];
     fetch('http://localhost:3500/api/bubbles')
     .then(response => response.json())
     .then(function(bubbles) {
-        console.log(cartItemIds.length);
         for (let i = 0; i < cartItemIds.length; i++) {
           cartItemObjects.push(bubbles.find(b => b.id == cartItemIds[i][0]));
           cartItemObjects[i].quantity = cartItemIds[i][1];
         }
-        console.log(cartItemObjects);
         updateCartItems(cartItemObjects);
       });
   }
@@ -54,6 +51,7 @@ export default function Cart() {
             }
           </div>
           <button onClick={() => { ClearCart(); getItemObjects();}}>Clear Shopping Cart</button>
+          <Link to={'/checkout'}>CHECKOUT</Link>
         </div>
       )
     } else {
