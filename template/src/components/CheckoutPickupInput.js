@@ -8,13 +8,6 @@ const CheckoutPickupInput = ({ show, deliveryType, showDeliveryOptions }) => {
     const [ showOverview, updateShowOverview ] = useState(false);
     const [ name, updateName ] = useState('');
     const [ telephone, updateTelephone ] = useState('');
-    useEffect(() => {
-        if (showDeliveryOptions === true) {
-            showHideClassName = "";
-        } else {
-            showHideClassName = "display-none";
-        }
-    }, []);
 
     return (
       <div>
@@ -31,7 +24,7 @@ const CheckoutPickupInput = ({ show, deliveryType, showDeliveryOptions }) => {
                 <input type="text" name="telephone" onChange={(evt) => updateTelephone(evt.target.value)}/>
               </label>
               <br />
-              <Link to="#">Review Order</Link>
+              <Link to="#" onClick={() => { updateShowOverview(true); }}>Review Order</Link>
           </form>
         </div>
         <CheckoutOrderReview show={showOverview} orderData={deliveryType} />

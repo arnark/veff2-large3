@@ -15,19 +15,6 @@ const CheckoutDeliveryInput = ({ show, deliveryType, showDeliveryOptions }) => {
     const [ telephone, updateTelephone ] = useState('');
     const [ postalCode, updatePostalCode ] = useState('');
 
-    useEffect(() => {
-        toggleDisplay();
-    }, []);
-
-    function toggleDisplay() {
-        console.log("showovervivew " + showOverview)
-        if (showDeliveryOptions === true || showOverview === true) {
-            showHideClassName = "";
-        } else {
-            showHideClassName = "display-none";
-        }
-    }
-
     return (
       <div>
         <div className={showHideClassName}>
@@ -58,7 +45,7 @@ const CheckoutDeliveryInput = ({ show, deliveryType, showDeliveryOptions }) => {
                 <input type="text" name="postalcode" onChange={(evt) => updatePostalCode(evt.target.value)}/>
               </label>
               <br />
-              <Link to="#" onClick={() => { updateShowOverview(true); toggleDisplay(); }}>Review Order</Link>
+              <Link to="#" onClick={() => { updateShowOverview(true); }}>Review Order</Link>
           </form>
         </div>
         <CheckoutOrderReview show={showOverview} orderData={deliveryType} />
