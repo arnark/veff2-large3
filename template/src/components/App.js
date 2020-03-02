@@ -35,6 +35,9 @@ export default function App() {
             <Route path="/cart">
               <Cart />
             </Route>
+            <Route path="/checkout">
+              <Checkout />
+            </Route>
             <Route path="/">
               <Bubbles />
             </Route>
