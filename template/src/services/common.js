@@ -16,3 +16,20 @@ export function AddBundleToCart(bubbles) {
         AddToCart(bubbles[i].id);
     }
 }
+
+export function ClearCart() {
+    localStorage.removeItem("cartItems");
+    alert("Cart cleared successfully");
+    //location.reload();
+}
+
+export function GetCartItems() {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (cartItems === null) { cartItems = {} }
+
+    let cartItemIds = [];
+    for (let key in cartItems) {
+        cartItemIds.push([key, cartItems[key]]);
+    }
+    return cartItemIds;
+}

@@ -31,7 +31,6 @@ export default function Bundles() {
       });
     }
 
-    
     function handleAddBundleToCart(bubbles, bundleName) {
       AddBundleToCart(bubbles);
       updateAddedBundle(bundleName);
