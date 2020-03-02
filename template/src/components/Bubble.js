@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import AddToCart from '../services/common.js';
+import { AddToCart } from '../services/common';
+
+import CheckoutOverlay from './CheckoutOverlay';
 
 export default function Bubble(props) {
     const { bubbleId } = props.match.params;
+    const [ show, toggleOverlay ] = useState(false);
     const [ bubble, updateBubble ] = useState([]);
   
     useEffect(() => {
@@ -18,25 +21,48 @@ export default function Bubble(props) {
       });
     }
 
+    function handleAddToCart(bubbleId) {
+        AddToCart(bubbleId);
+        // getBubble(bubbleId);
+  
+        if (show === true) {
+          hideOverlay();
+        } else {
+          showOverlay();
+        }
+      }
+  
+      function showOverlay() {
+        toggleOverlay(true);
+      };
+  
+      function hideOverlay() {
+        toggleOverlay(false);
+      };
+
     if (bubble !== undefined) {
         return (
          <div id="products">
            {bubble.map((data) => {
              return (
-           <div className="item-container" key={data.id}>
-             <div className="item-name">
-               <p>{data.name}</p>
-             </div>
-             <div className="item-image">
-               <img src={data.image} />
-             </div>
-             <div className="item-description">
-               <p>{data.description}</p>
-             </div>
-             <div className="item-price">
-               <p>{data.price}</p>  
-             </div>
-           </div>
+                <div key={data.id}>
+                 <CheckoutOverlay show={show} handleClose={() => hideOverlay()} bubble={bubble} />
+                 <div className="item-container">
+                   <div className="item-name">
+                     <p>{data.name}</p>
+                   </div>
+                   <div className="item-image">
+                     <img src={data.image} />
+                   </div>
+                   <div className="item-description">
+                     <p>{data.description}</p>
+                   </div>
+                   <div className="item-price">
+                     <p>{data.price}</p>  
+                   </div>
+                   <button className="addToCart" onClick={() => handleAddToCart(data.id)}>Add to Cart</button>
+                 </div>
+                </div>
             )})
            }
          </div>

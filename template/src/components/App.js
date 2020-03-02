@@ -12,6 +12,7 @@ import Bubble from './Bubble';
 import Bundles from './Bundles';
 import About from './About';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 export default function App() {
   return (
