@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 import CheckoutOrderReview from './CheckoutOrderReview';
 
-const CheckoutPickupInput = ({ show, deliveryType }) => {
-    const showHideClassName = show ? "" : "display-none";
+const CheckoutPickupInput = ({ show, deliveryType, showDeliveryOptions }) => {
+    let showHideClassName = show ? "" : "display-none";
     const [ showOverview, updateShowOverview ] = useState(false);
     const [ name, updateName ] = useState('');
     const [ telephone, updateTelephone ] = useState('');
+    useEffect(() => {
+        if (showDeliveryOptions === true) {
+            showHideClassName = "";
+        } else {
+            showHideClassName = "display-none";
+        }
+    }, []);
 
     return (
       <div>

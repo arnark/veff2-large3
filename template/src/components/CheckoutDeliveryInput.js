@@ -3,19 +3,30 @@ import { Link } from 'react-router-dom';
 
 import CheckoutOrderReview from './CheckoutOrderReview';
 
-const CheckoutDeliveryInput = ({ show, deliveryType }) => {
+const CheckoutDeliveryInput = ({ show, deliveryType, showDeliveryOptions }) => {
 
-    console.log(show)
-    const [ showInputFields, updateShowInputFields ] = useState(false);
-    const [ showOverview, updateShowOverview ] = useState(false);
     
-    const showHideClassName = show ? "" : "display-none";
+    const [ showOverview, updateShowOverview ] = useState(false);
+    let showHideClassName = show ? "" : "display-none";
 
     const [ name, updateName ] = useState('');
     const [ address, updateAddress ] = useState('');
     const [ city, updateCity ] = useState('');
     const [ telephone, updateTelephone ] = useState('');
     const [ postalCode, updatePostalCode ] = useState('');
+
+    useEffect(() => {
+        toggleDisplay();
+    }, []);
+
+    function toggleDisplay() {
+        console.log("showovervivew " + showOverview)
+        if (showDeliveryOptions === true || showOverview === true) {
+            showHideClassName = "";
+        } else {
+            showHideClassName = "display-none";
+        }
+    }
 
     return (
       <div>
@@ -47,7 +58,7 @@ const CheckoutDeliveryInput = ({ show, deliveryType }) => {
                 <input type="text" name="postalcode" onChange={(evt) => updatePostalCode(evt.target.value)}/>
               </label>
               <br />
-              <Link to="#" onClick={() => { updateShowOverview(true); updateShowInputFields(false); }}>Review Order</Link>
+              <Link to="#" onClick={() => { updateShowOverview(true); toggleDisplay(); }}>Review Order</Link>
           </form>
         </div>
         <CheckoutOrderReview show={showOverview} orderData={deliveryType} />

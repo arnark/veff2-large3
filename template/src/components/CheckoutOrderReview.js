@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const CheckoutOrderReview = ({ show, deliveryData }) => {
+const CheckoutOrderReview = ({ show, orderData }) => {
     const showHideClassName = show ? "" : "display-none";
 
     return (
       <div className={showHideClassName}>
-          <p>{deliveryData}</p>
+          <p>{orderData}</p>
       </div>
     );
 };

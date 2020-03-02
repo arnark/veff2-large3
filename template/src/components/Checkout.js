@@ -20,7 +20,7 @@ export default function Checkout() {
             <br />
             <Link to="#" onClick={() => { updatePickup(true); updateCheckoutState(false); }}>Store pick-up</Link>
         </div>
-        <CheckoutDeliveryInput show={showDelivery} deliveryType={'delivery'} />
+        <CheckoutDeliveryInput show={showDelivery} showDeliveryOptions={showDeliveryOptions} deliveryType={'delivery'} />
         <CheckoutPickupInput show={showPickup} deliveryType={'pick-up'} />
       </div>
     )
