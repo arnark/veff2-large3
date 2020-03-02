@@ -4,6 +4,11 @@
 	margin: auto;
 }
 
+.nav-link {
+	font-size: large;
+	margin-left: 20px;
+}
+
 #products {
 	display: flex;
   	align-items: flex-start;
@@ -24,20 +29,13 @@ a:hover {
 	text-decoration: none;
 }
 
-.card:hover {
+.bubble-card:hover {
 	border-color: var(--success);
 }
 
-.item-name {
-	
-}
-
-.item-image {
-
-}
-
-.item-price {
-
+.bubble-card-big {
+	width: 95%;
+	margin: 10px auto;
 }
 
 .modal {

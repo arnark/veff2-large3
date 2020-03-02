@@ -41,38 +41,37 @@ export default function Bubble(props) {
       };
 
     if (bubble !== undefined) {
-        return (
-         <div id="products">
-           {bubble.map((data) => {
-             return (
-                <div key={data.id}>
-                 <CheckoutOverlay show={show} handleClose={() => hideOverlay()} bubble={bubble} />
-                 <div className="item-container">
-                   <div className="item-name">
-                     <p>{data.name}</p>
-                   </div>
-                   <div className="item-image">
-                     <img src={data.image} />
-                   </div>
-                   <div className="item-description">
-                     <p>{data.description}</p>
-                   </div>
-                   <div className="item-price">
-                     <p>{data.price}</p>  
-                   </div>
-                   <button className="addToCart" onClick={() => handleAddToCart(data.id)}>Add to Cart</button>
-                 </div>
+      return (
+        <div id="products" className="my-2">
+          {bubble.map((data) => {
+            return (
+              <div className="w-100" key={data.id}>
+                <CheckoutOverlay show={show} handleClose={() => hideOverlay()} bubble={bubble} />
+                <div className="bubble-card-big card">
+                  <div className="row no-gutters">
+                    <div className="col-5">
+                      <img className="card-img" src={data.image} />
+                    </div>
+                    <div className="col-7">
+                      <div className="card-body h-100 d-flex flex-column">
+                        <h3 className="card-title py-2">{data.name}</h3>
+                        <p className="mb-auto">{data.description}</p>
+                        <p>{data.price} ISK</p>  
+                        <button className="btn btn-block btn-outline-success addToCart" onClick={() => handleAddToCart(data.id)}>Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             )})
-           }
-         </div>
-        )
+          }
+        </div>
+      )
     } else {
-        return (
-            <div>
-                <h1>Bubble not found.</h1>
-            </div>
-          )
+      return (
+        <div>
+          <h1>Bubble not found.</h1>
+        </div>
+      )
     }
-
 }

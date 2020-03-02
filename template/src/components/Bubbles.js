@@ -54,7 +54,7 @@ export default function Bubbles() {
             return (
               <div className="item-container">
                 <Link to={`/bubbles/${data.id}`}>
-                  <div className="card text-center text-dark mb-1" id={data.id} key={data.id}>
+                  <div className="bubble-card card text-center text-dark mb-1" id={data.id} key={data.id}>
                     <h4 className="card-header">{data.name}</h4>
                     <img className="card-img-top" src={data.image} />
                     <p>{data.price} ISK</p>

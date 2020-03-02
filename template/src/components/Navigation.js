@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 export default function About() {
     return (
-        <nav className="navbar navbar-expand-md navbar-light bg-primary">
+      <nav className="navbar navbar-expand-md navbar-light bg-primary">
+        <Link to="/" className="navbar-brand mr-auto">Logo</Link>
         <div className="navbar-nav">
           <Link to="/bubbles" className="nav-link text-light">Products</Link>
           <Link to="/bundles" className="nav-link text-light">Bundles</Link>
