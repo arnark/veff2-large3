@@ -13,6 +13,7 @@ export default function Bubbles() {
       fetch('http://localhost:3500/api/bubbles')
       .then(response => response.json())
       .then(function(data) {
+        console.log(data)
         updateBubbles(data);
       });
     }
