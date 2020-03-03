@@ -4,16 +4,23 @@ import { Link } from 'react-router-dom';
 import CheckoutOrderReview from './CheckoutOrderReview';
 
 const CheckoutDeliveryInput = ({ show, deliveryType, showDeliveryOptions }) => {
-
-    
     const [ showOverview, updateShowOverview ] = useState(false);
     let showHideClassName = show ? "" : "display-none";
 
-    const [ name, updateName ] = useState('');
-    const [ address, updateAddress ] = useState('');
-    const [ city, updateCity ] = useState('');
-    const [ telephone, updateTelephone ] = useState('');
-    const [ postalCode, updatePostalCode ] = useState('');
+    const [ customerData, updateCustomerData ] = useState({
+        name: '',
+        address: '',
+        city: '',
+        telephone: '',
+        postalCode: ''
+    });
+
+    function genericInputHandler(e) {
+        updateCustomerData({
+            ...customerData,
+            [ e.target.name ]: e.target.value
+        });
+      }
 
     return (
       <div>
@@ -22,27 +29,27 @@ const CheckoutDeliveryInput = ({ show, deliveryType, showDeliveryOptions }) => {
           <form>
               <label>
                 Name:
-                <input type="text" name="name" onChange={(evt) => updateName(evt.target.value)}/>
+                <input type="text" name="name" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <label>
                 Address:
-                <input type="text" name="address" onChange={(evt) => updateAddress(evt.target.value)}/>
+                <input type="text" name="address" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <label>
                 City:
-                <input type="text" name="city" onChange={(evt) => updateCity(evt.target.value)}/>
+                <input type="text" name="city" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <label>
                 Telephone:
-                <input type="text" name="telephone" onChange={(evt) => updateTelephone(evt.target.value)}/>
+                <input type="text" name="telephone" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <label>
                 Postal Code:
-                <input type="text" name="postalcode" onChange={(evt) => updatePostalCode(evt.target.value)}/>
+                <input type="text" name="postalcode" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <Link to="#" onClick={() => { updateShowOverview(true); }}>Review Order</Link>

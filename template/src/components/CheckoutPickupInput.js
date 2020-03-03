@@ -6,8 +6,17 @@ import CheckoutOrderReview from './CheckoutOrderReview';
 const CheckoutPickupInput = ({ show, deliveryType, showDeliveryOptions }) => {
     let showHideClassName = show ? "" : "display-none";
     const [ showOverview, updateShowOverview ] = useState(false);
-    const [ name, updateName ] = useState('');
-    const [ telephone, updateTelephone ] = useState('');
+    const [ customerData, updateCustomerData ] = useState({
+        name: '',
+        telephone: ''
+    });
+
+    function genericInputHandler(e) {
+        updateCustomerData({
+            ...customerData,
+            [ e.target.name ]: e.target.value
+        });
+      }
 
     return (
       <div>
@@ -16,12 +25,12 @@ const CheckoutPickupInput = ({ show, deliveryType, showDeliveryOptions }) => {
           <form>
           <label>
                 Name:
-                <input type="text" name="name" onChange={(evt) => updateName(evt.target.value)}/>
+                <input type="text" name="name" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <label>
                 Telephone:
-                <input type="text" name="telephone" onChange={(evt) => updateTelephone(evt.target.value)}/>
+                <input type="text" name="telephone" onChange={(evt) => genericInputHandler(evt)}/>
               </label>
               <br />
               <Link to="#" onClick={() => { updateShowOverview(true); }}>Review Order</Link>
