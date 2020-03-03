@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// import { Form, FormInput, FormSelect, FormGroup, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 export default function Checkout() {
@@ -10,7 +11,14 @@ export default function Checkout() {
     ORDER_OVERVIEW: 'overview'
   }
 
+  const deliveryTypes = {
+    DELIVERY: 'delivery',
+    PICKUP: 'pick-up'
+  }
+
   const [ currentStep, updateCurrentStep ] = useState(steps.DELIVERY_OPTIONS);
+  const [ deliveryType, updateDeliveryType ] = useState(deliveryTypes.DELIVERY);
+  const [ errors, updateErrors ] = useState({});
   const [ customerData, updateCustomerData ] = useState({
       name: '',
       address: '',
@@ -18,6 +26,40 @@ export default function Checkout() {
       telephone: '',
       postalCode: ''
   });
+
+  function validateForm() {
+    const { name, address, city, telephone, postalCode } = customerData;
+    const errors = {};
+
+    if (deliveryType === deliveryTypes.DELIVERY) {
+        if (address === '') {
+          errors.address = 'Address is required.';
+        }
+        if (city === '') {
+          errors.city = 'City is required.';
+        }
+        if (postalCode === '') {
+          errors.postalCode = 'Postal code is required.';
+        }
+    }
+
+    if (name === '') {
+      errors.name = 'Name is required.';
+    }
+    if (telephone === '') {
+      errors.telephone = 'Telephone is required.';
+    }
+
+    updateErrors(errors);
+    if (Object.keys(errors).length > 0) { return false; }
+    return true;
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    if (!validateForm()) { alert("Incorrect data"); return; }
+    alert('Form was submitted correctly');
+  }
 
   function genericInputHandler(e) {
       updateCustomerData({
@@ -32,9 +74,9 @@ export default function Checkout() {
         <div>
             <h1>Checkout Page</h1>
             <p>Choose delivery type:</p>
-            <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_INPUT); }}>Delivery</Link>
+            <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_INPUT); updateDeliveryType(deliveryTypes.DELIVERY); }}>Delivery</Link>
             <br />
-            <Link to="#" onClick={() => { updateCurrentStep(steps.PICKUP_INPUT); }}>Store pick-up</Link>
+            <Link to="#" onClick={() => { updateCurrentStep(steps.PICKUP_INPUT); updateDeliveryType(deliveryTypes.PICKUP); }}>Store pick-up</Link>
         </div>
       </div>
     )
@@ -45,31 +87,32 @@ export default function Checkout() {
         <form>
           <label>
             Name:
-            <input type="text" name="name" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="name" value={customerData.name} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
           <label>
             Address:
-            <input type="text" name="address" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="address" value={customerData.address} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
           <label>
             City:
-            <input type="text" name="city" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="city" value={customerData.city} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
           <label>
             Telephone:
-            <input type="text" name="telephone" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="telephone" value={customerData.telephone} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
           <label>
             Postal Code:
-            <input type="text" name="postalcode" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="postalCode" value={customerData.postalCode} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
-          <Link to="#" onClick={() => {  updateCurrentStep(steps.ORDER_OVERVIEW); }}>Review Order</Link>
+          <Link to="#" onClick={() => { updateCurrentStep(steps.ORDER_OVERVIEW); }}>Review Order</Link>
         </form>
+        <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>GO BACK</Link>
     </div>
     );
   } else if (currentStep === steps.PICKUP_INPUT) {
@@ -79,24 +122,45 @@ export default function Checkout() {
         <form>
           <label>
             Name:
-            <input type="text" name="name" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="name" value={customerData.name} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
           <label>
             Telephone:
-            <input type="text" name="telephone" onChange={(evt) => genericInputHandler(evt)}/>
+            <input type="text" name="telephone" value={customerData.telephone} onChange={(evt) => genericInputHandler(evt)}/>
           </label>
           <br />
           <Link to="#" onClick={() => { updateCurrentStep(steps.ORDER_OVERVIEW); }}>Review Order</Link>
         </form>
+        <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>GO BACK</Link>
       </div>
     );
   } else if (currentStep === steps.ORDER_OVERVIEW) {
-    return (
-      <div>
-          <p>overview</p>
-      </div>
-    );
+      if (deliveryType === deliveryTypes.DELIVERY) {
+        return (
+          <div>
+            <form onSubmit={ e => submitForm(e) }>
+              <p>{customerData.name}</p>
+              <p>{customerData.address}</p>
+              <p>{customerData.city}</p>
+              <p>{customerData.telephone}</p>
+              <p>{customerData.postalCode}</p>
+              <button>Order</button>
+            </form>
+            <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_INPUT); }}>GO BACK</Link>
+          </div>
+        );
+      } else if (deliveryType === deliveryTypes.PICKUP) {
+        return (
+          <div>
+            <form onSubmit={ e => submitForm(e) }>
+              <p>{customerData.name}</p>
+              <p>{customerData.telephone}</p>
+              <button>Order</button>
+            </form>
+            <Link to="#" onClick={() => { updateCurrentStep(steps.PICKUP_INPUT); }}>GO BACK</Link>
+          </div>
+        );
+      }
   }
-
-  }
+}
