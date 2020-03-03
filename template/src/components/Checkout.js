@@ -49,7 +49,7 @@ export default function Checkout() {
     if (name === '') {
       errors.name = 'Name is required.';
     }
-    if (telephone === '') {
+    if (telephone === '' || isNaN(telephone) || telephone.length < 7) {
       errors.telephone = 'Telephone is required.';
     }
 
