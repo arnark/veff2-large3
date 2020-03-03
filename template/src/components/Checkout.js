@@ -57,10 +57,23 @@ export default function Checkout() {
     return true;
   }
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
     if (!validateForm()) { return; }
-    alert('Form was submitted correctly');
+
+    (async () => {
+      const rawResponse = await fetch('http://localhost:3500/api/orders/' + customerData.telephone, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(customerData)
+      });
+      alert('Form was submitted correctly');
+    })();
   }
 
   function genericInputHandler(e) {
@@ -89,8 +102,8 @@ export default function Checkout() {
     return (
       <div id="checkout-container">
         <div className="checkout-input card text-dark mb-1 my-2">
-          <h2 class="card-header">Delivery</h2>
-          <Form id="delivery-form" className="padding" onSubmit={ e => submitForm(e) }>
+          <h2 className="card-header">Delivery</h2>
+          <Form className="padding">
             <FormGroup>
               <label htmlFor="name">Name</label>
               <FormInput 
@@ -137,7 +150,7 @@ export default function Checkout() {
                 invalid={ errors.hasOwnProperty('postalCode') } 
                 placeholder="Enter postal code" />
             </FormGroup>
-            <Button theme="success" className="float-right" form="delivery-form">Submit order!</Button>
+            <Button theme="success" className="float-right" onClick={() => { if (validateForm()) { updateCurrentStep(steps.ORDER_OVERVIEW); }}}>Continue</Button>
             <Button theme="light" className="float-left" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>Go back</Button>
           </Form>
         </div>
@@ -148,8 +161,8 @@ export default function Checkout() {
     return (
       <div id="checkout-container">
         <div className="checkout-input card text-dark mb-1 my-2">
-          <h2 class="card-header">Store pick-up</h2>
-          <Form id="delivery-form" className="padding" onSubmit={ e => submitForm(e) }>
+          <h2 className="card-header">Store pick-up</h2>
+          <Form className="padding">
             <FormGroup>
               <label htmlFor="name">Name</label>
               <FormInput 
@@ -169,7 +182,7 @@ export default function Checkout() {
                 invalid={ errors.hasOwnProperty('telephone') } 
                 placeholder="Enter telephone" />
             </FormGroup>
-            <Button theme="success" className="float-right" form="delivery-form">Submit order!</Button>
+            <Button theme="success" className="float-right" onClick={() => { if (validateForm()) { updateCurrentStep(steps.ORDER_OVERVIEW); }}}>Continue</Button>
             <Button theme="light" className="float-left" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>Go back</Button>
           </Form>
         </div>
