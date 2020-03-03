@@ -9,6 +9,10 @@
 	margin-left: 20px;
 }
 
+.padding {
+	padding: 10px;
+}
+
 #products {
 	display: flex;
   	align-items: flex-start;
@@ -88,7 +92,8 @@ a:hover {
   }
 
   .checkout-cart-preview {
-	  width: 40%;
+    width: 35%;
+    margin-left: 20px;
   }
 
   .checkout-cart-item {
@@ -113,6 +118,7 @@ a:hover {
 	width: 80px;
 	object-fit: contain;
   }
+
 
   #checkout-container {
 	display: flex;

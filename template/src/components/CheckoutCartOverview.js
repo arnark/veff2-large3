@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetCartItems, ClearCart } from '../services/common';
+import { GetCartItems } from '../services/common';
 
 export default function CheckoutCartOverview() {
     const [ cartItems, updateCartItems ] = useState([]);

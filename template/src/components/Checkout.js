@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { Form, FormInput, FormSelect, FormGroup, Button } from "shards-react";
 
 import CheckoutCartOverview from './CheckoutCartOverview';
 
@@ -58,7 +59,7 @@ export default function Checkout() {
 
   function submitForm(e) {
     e.preventDefault();
-    if (!validateForm()) { alert("Incorrect data"); return; }
+    if (!validateForm()) { return; }
     alert('Form was submitted correctly');
   }
 
@@ -72,12 +73,14 @@ export default function Checkout() {
   if (currentStep === steps.DELIVERY_OPTIONS) {
     return (
       <div id="checkout-container">
-        <div className="checkout-input">
-            <h1>Checkout Page</h1>
-            <p>Choose delivery type:</p>
+        <div className="checkout-input card text-dark mb-1 my-2">
+          <h2 className="card-header">Checkout page</h2>
+          <div className="padding">
+            <p>Choose delivery type</p>
             <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_INPUT); updateDeliveryType(deliveryTypes.DELIVERY); }}>Delivery</Link>
             <br />
             <Link to="#" onClick={() => { updateCurrentStep(steps.PICKUP_INPUT); updateDeliveryType(deliveryTypes.PICKUP); }}>Store pick-up</Link>
+          </div>
         </div>
         <CheckoutCartOverview />
       </div>
@@ -85,37 +88,58 @@ export default function Checkout() {
   } else if (currentStep === steps.DELIVERY_INPUT) {
     return (
       <div id="checkout-container">
-        <div className="checkout-input">
-          <h1>Delivery</h1>
-          <form>
-            <label>
-              Name:
-              <input type="text" name="name" value={customerData.name} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <label>
-              Address:
-              <input type="text" name="address" value={customerData.address} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <label>
-              City:
-              <input type="text" name="city" value={customerData.city} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <label>
-              Telephone:
-              <input type="text" name="telephone" value={customerData.telephone} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <label>
-              Postal Code:
-              <input type="text" name="postalCode" value={customerData.postalCode} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <Link to="#" onClick={() => { updateCurrentStep(steps.ORDER_OVERVIEW); }}>Review Order</Link>
-          </form>
-          <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>GO BACK</Link>
+        <div className="checkout-input card text-dark mb-1 my-2">
+          <h2 class="card-header">Delivery</h2>
+          <Form id="delivery-form" className="padding" onSubmit={ e => submitForm(e) }>
+            <FormGroup>
+              <label htmlFor="name">Name</label>
+              <FormInput 
+                autoFocus
+                name="name" 
+                value={customerData.name} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('name') } 
+                placeholder="Enter name" />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="address">Address</label>
+              <FormInput 
+                name="address" 
+                value={customerData.address} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('address') } 
+                placeholder="Enter address" />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="city">City</label>
+              <FormInput 
+                name="city" 
+                value={customerData.city} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('city') } 
+                placeholder="Enter city" />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="telephone">Telephone</label>
+              <FormInput 
+                name="telephone" 
+                value={customerData.telephone} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('telephone') } 
+                placeholder="Enter telephone" />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="postalCode">Postal code</label>
+              <FormInput 
+                name="postalCode"
+                value={customerData.postalCode} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('postalCode') } 
+                placeholder="Enter postal code" />
+            </FormGroup>
+            <Button theme="success" className="float-right" form="delivery-form">Submit order!</Button>
+            <Button theme="light" className="float-left" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>Go back</Button>
+          </Form>
         </div>
         <CheckoutCartOverview />
       </div>
@@ -123,22 +147,31 @@ export default function Checkout() {
   } else if (currentStep === steps.PICKUP_INPUT) {
     return (
       <div id="checkout-container">
-        <div className="checkout-input">
-          <h1>Store pick-up</h1>
-          <form>
-            <label>
-              Name:
-              <input type="text" name="name" value={customerData.name} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <label>
-              Telephone:
-              <input type="text" name="telephone" value={customerData.telephone} onChange={(evt) => genericInputHandler(evt)}/>
-            </label>
-            <br />
-            <Link to="#" onClick={() => { updateCurrentStep(steps.ORDER_OVERVIEW); }}>Review Order</Link>
-          </form>
-          <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>GO BACK</Link>
+        <div className="checkout-input card text-dark mb-1 my-2">
+          <h2 class="card-header">Store pick-up</h2>
+          <Form id="delivery-form" className="padding" onSubmit={ e => submitForm(e) }>
+            <FormGroup>
+              <label htmlFor="name">Name</label>
+              <FormInput 
+                autoFocus
+                name="name" 
+                value={customerData.name} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('name') } 
+                placeholder="Enter name" />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="telephone">Telephone</label>
+              <FormInput 
+                name="telephone" 
+                value={customerData.telephone} 
+                onChange={(evt) => genericInputHandler(evt)} 
+                invalid={ errors.hasOwnProperty('telephone') } 
+                placeholder="Enter telephone" />
+            </FormGroup>
+            <Button theme="success" className="float-right" form="delivery-form">Submit order!</Button>
+            <Button theme="light" className="float-left" onClick={() => { updateCurrentStep(steps.DELIVERY_OPTIONS); }}>Go back</Button>
+          </Form>
         </div>
         <CheckoutCartOverview />
       </div>
