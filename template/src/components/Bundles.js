@@ -60,8 +60,8 @@ export default function Bundles() {
               <div className="card-deck justify-content-center">
                 {data.items.map((bubble) => {
                 return (
-                  <Link to={`/bubbles/${bubble.id}`}>
-                    <div className="bubble-card card bundle-card text-center text-dark" id={bubble.id} key={bubble.id}>
+                  <Link to={`/bubbles/${bubble.id}`} key={bubble.id}>
+                    <div className="bubble-card card bundle-card text-center text-dark" id={bubble.id} >
                       <h4 className="card-header">{bubble.name}</h4>
                       <img className="img-fluid" src={bubble.image} />
                       <p>{bubble.price} ISK</p>
