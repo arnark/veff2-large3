@@ -13,6 +13,7 @@ import Bundles from './Bundles';
 import About from './About';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import OrderSuccess from './OrderSuccess';
 
 export default function App() {
   return (
@@ -37,6 +38,9 @@ export default function App() {
             </Route>
             <Route path="/checkout">
               <Checkout />
+            </Route>
+            <Route path="/ordersuccess">
+              <OrderSuccess />
             </Route>
             <Route path="/">
               <Bubbles />

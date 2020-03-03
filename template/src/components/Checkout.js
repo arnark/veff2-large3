@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { Form, FormInput, FormSelect, FormGroup, Button } from "shards-react";
+import { Form, FormInput, FormGroup, Button } from "shards-react";
+import { GetCartItems, CheckoutComplete } from '../services/common';
 
 import CheckoutCartOverview from './CheckoutCartOverview';
 
@@ -61,14 +62,21 @@ export default function Checkout() {
     e.preventDefault();
     if (!validateForm()) { return; }
 
+    customerData.cartItems = GetCartItems();
+    
     fetch('http://localhost:3500/api/orders/' + customerData.telephone, {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: customerData,
+      body: JSON.stringify(customerData),
     })
+    .then((response) => { 
+      if (response.ok) {
+        CheckoutComplete(customerData);
+      }
+    });
   }
 
   function genericInputHandler(e) {
@@ -188,16 +196,17 @@ export default function Checkout() {
       if (deliveryType === deliveryTypes.DELIVERY) {
         return (
           <div id="checkout-container">
-            <div className="checkout-input">
-              <form onSubmit={ e => submitForm(e) }>
-                <p>{customerData.name}</p>
-                <p>{customerData.address}</p>
-                <p>{customerData.city}</p>
-                <p>{customerData.telephone}</p>
-                <p>{customerData.postalCode}</p>
-                <button>Order</button>
-              </form>
-              <Link to="#" onClick={() => { updateCurrentStep(steps.DELIVERY_INPUT); }}>GO BACK</Link>
+            <div className="checkout-input card text-dark mb-1 my-2">
+              <h2 className="card-header">Customer details</h2>
+              <div className="padding">
+                <p>Name: {customerData.name}</p>
+                <p>Address: {customerData.address}</p>
+                <p>City: {customerData.city}</p>
+                <p>Telephone: {customerData.telephone}</p>
+                <p>Postal code: {customerData.postalCode}</p>
+                <Button theme="success" className="float-right" onClick={ e => submitForm(e) }>Complete order</Button>
+                <Button theme="light" className="float-left" onClick={() => { updateCurrentStep(steps.DELIVERY_INPUT); }}>Go back</Button>
+              </div>
             </div>
             <CheckoutCartOverview />
           </div>
@@ -205,13 +214,14 @@ export default function Checkout() {
       } else if (deliveryType === deliveryTypes.PICKUP) {
         return (
           <div id="checkout-container">
-            <div className="checkout-input">
-              <form onSubmit={ e => submitForm(e) }>
-                <p>{customerData.name}</p>
-                <p>{customerData.telephone}</p>
-                <button>Order</button>
-              </form>
-              <Link to="#" onClick={() => { updateCurrentStep(steps.PICKUP_INPUT); }}>GO BACK</Link>
+            <div className="checkout-input card text-dark mb-1 my-2">
+              <h2 className="card-header">Customer details</h2>
+              <div className="padding">
+                <p>Name: {customerData.name}</p>
+                <p>Telephone: {customerData.telephone}</p>
+                <Button theme="success" className="float-right" onClick={ e => submitForm(e) }>Complete order</Button>
+                <Button theme="light" className="float-left" onClick={() => { updateCurrentStep(steps.PICKUP_INPUT); }}>Go back</Button>
+              </div>
             </div>
             <CheckoutCartOverview />
           </div>

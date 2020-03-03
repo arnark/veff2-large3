@@ -19,7 +19,6 @@ export function AddBundleToCart(bubbles) {
 
 export function ClearCart() {
     localStorage.removeItem("cartItems");
-    alert("Cart cleared successfully");
 }
 
 export function GetCartItems() {
@@ -31,4 +30,17 @@ export function GetCartItems() {
         cartItemIds.push([key, cartItems[key]]);
     }
     return cartItemIds;
+}
+
+export function CheckoutComplete(customerData) {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData === null) { userData = {} }
+    
+    userData[customerData.telephone] = customerData;
+
+    userData = JSON.stringify(userData);
+    localStorage.setItem("userData", userData);
+
+    ClearCart();
+    document.location.href = "/ordersuccess";
 }
