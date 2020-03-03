@@ -53,32 +53,28 @@ export default function Bundles() {
     return (
       <div>
         <BundleCheckoutOverlay show={show} handleClose={() => hideOverlay()} bundleName={addedBundle} />
-        <h1>Bundles</h1>
         {bundles.map((data) => {
           return (
-            <div key={data.id}>
-              <h2>{data.name}</h2>
-              {data.items.map((bubble) => {
-            return (
-              <div className="item-container" id={bubble.id} key={bubble.id}>
-                <Link to={`/bubbles/${bubble.id}`}>
-                  <div className="item-name">
-                    <p>{bubble.name}</p>
-                  </div>
-                  <div className="item-image">
-                    <img src={bubble.image} />
-                  </div>
-                  <div className="item-price">
-                    <p>{bubble.price}</p>
-                  </div>
-                </Link>
+            <div className="bundle text-center my-3" key={data.id}>
+              <h2 className="p-2">{data.name}</h2>
+              <div className="card-deck justify-content-center">
+                {data.items.map((bubble) => {
+                return (
+                  <Link to={`/bubbles/${bubble.id}`}>
+                    <div className="bubble-card card bundle-card text-center text-dark" id={bubble.id} key={bubble.id}>
+                      <h4 className="card-header">{bubble.name}</h4>
+                      <img className="img-fluid" src={bubble.image} />
+                      <p>{bubble.price} ISK</p>
+                    </div>
+                  </Link>
+                  )})
+                }
               </div>
-              )})
-            }
-          <button className="addToCart" onClick={() => handleAddBundleToCart(data.items, data.name)}>Add Bundle to Cart</button>
-          <br /><br /><br />
-         </div>
-         )
+              <div className="w-100 d-flex">
+                <button className="btn btn-lg btn-outline-success bundle-button addToCart" onClick={() => handleAddBundleToCart(data.items, data.name)}>Add Bundle to Cart</button>
+              </div>
+            </div>
+          )
         })}
       </div>
     )

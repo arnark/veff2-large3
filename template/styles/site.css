@@ -38,6 +38,23 @@ a:hover {
 	margin: 10px auto;
 }
 
+.bundle {
+	border: 1px solid var(--primary);
+	border-radius: 3px;
+	padding: 10px;
+}
+
+.bundle-card {
+	height: 420px;
+	width: 330px;
+}
+
+.bundle-button {
+	width: 30%;
+	margin: 10px auto 0px;
+	justify-self: center;
+}
+
 .modal {
 	position: fixed;
 	top: 0;
