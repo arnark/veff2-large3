@@ -61,19 +61,14 @@ export default function Checkout() {
     e.preventDefault();
     if (!validateForm()) { return; }
 
-    (async () => {
-      const rawResponse = await fetch('http://localhost:3500/api/orders/' + customerData.telephone, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(customerData)
-      });
-      alert('Form was submitted correctly');
-    })();
+    fetch('http://localhost:3500/api/orders/' + customerData.telephone, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: customerData,
+    })
   }
 
   function genericInputHandler(e) {
