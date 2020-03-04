@@ -33,10 +33,12 @@ export default function PreviousOrderInput() {
             }
         })
         .then((data) => {
+          if (data){
             let prevOrders = convertPrevOrderSearchToBundle(data);
             updatePreviousOrders(prevOrders);
             return data;
-          });
+          }
+        });
     }
 
     function convertPrevOrderSearchToBundle(response) {
