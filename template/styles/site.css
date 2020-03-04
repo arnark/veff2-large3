@@ -142,3 +142,12 @@ table {
 	flex-wrap: wrap;
 	height: 100%;
   }
+
+  .cart-prev-order {
+	border-top: 2px solid #dfdfdf;
+	margin-top: 50px;
+  }
+
+  .cart-prev-order-title {
+	  margin-top: 15px;
+  }

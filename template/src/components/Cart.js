@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { GetCartItems, ClearCart } from '../services/common';
 
+import PreviousOrderInput from './PreviousOrderInput';
+
 export default function Cart() {
     const [ cartItems, updateCartItems ] = useState([]);
     const [ totalISK, updateTotalISK ] = useState(0);
@@ -76,13 +78,15 @@ export default function Cart() {
             <button className="btn btn-outline-danger" onClick={() => { ClearCart(); getItemObjects();}}>Clear Shopping Cart</button>
             <Link className="btn btn-success px-5" to={'/checkout'}>Checkout</Link>
           </div>
+          <PreviousOrderInput />
         </div>
       )
     } else {
       return (
         <div className="my-3">
           <h2>Shopping Cart</h2>
-          <h6>No products in shopping cart. Get shopping!!!!!</h6>
+          <h6>No products in shopping cart.</h6>
+          <PreviousOrderInput />
         </div>
       )
     }
