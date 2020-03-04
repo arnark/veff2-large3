@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { AddToCart } from '../services/common';
 
 import CheckoutOverlay from './CheckoutOverlay';
@@ -23,8 +24,7 @@ export default function Bubble(props) {
 
     function handleAddToCart(bubbleId) {
         AddToCart(bubbleId);
-        // getBubble(bubbleId);
-  
+
         if (show === true) {
           hideOverlay();
         } else {
@@ -74,4 +74,15 @@ export default function Bubble(props) {
         </div>
       )
     }
+}
+
+/* 
+  props.mathc.params.bubbleId: required string representing a bubble id
+*/
+Bubble.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      bubbleId: PropTypes.string.isRequired
+    })
+  })
 }

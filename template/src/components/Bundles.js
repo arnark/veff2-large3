@@ -7,11 +7,11 @@ import BundleCheckoutOverlay from './BundleCheckoutOverlay';
 export default function Bundles() {
     const [ bundles, updateBundles ] = useState([]);
     const [ show, toggleOverlay ] = useState(false);
-    const [ addedBundle, updateAddedBundle ] = useState([]);
+    const [ addedBundle, updateAddedBundle ] = useState('');
   
     useEffect(() => {
       getBundles();
-      updateAddedBundle();
+      updateAddedBundle('');
     }, []);
   
     function getBundles() {
