@@ -6,8 +6,7 @@ import { AddBundleToCart } from '../services/common';
 export default function PreviousOrderInput() {
     const [ bubbles, updateBubbles ] = useState([]);
     const [ phoneNumber, updatePhoneNumber ] = useState('');
-    const [ show, toggleOverlay ] = useState(false);
-    const [ addedBundle, updateAddedBundle ] = useState([]);
+    const [ error, updateError ] = useState('');
     const [ previousOrders, updatePreviousOrders ] = useState([]);
 
     useEffect(() => {
@@ -26,15 +25,15 @@ export default function PreviousOrderInput() {
         fetch('http://localhost:3500/api/orders/' + phoneNumber)
         .then((response) => {
             if (response.ok) {
-                //response.error = '';
+                updateError('');
                 return response.json();
             } else {
-                return {'error': 'Not found.'}
+                updatePreviousOrders([]);
+                updateError('Not found.');
             }
         })
         .then((data) => {
             let prevOrders = convertPrevOrderSearchToBundle(data);
-            console.log(prevOrders);
             updatePreviousOrders(prevOrders);
             return data;
           });
@@ -57,7 +56,6 @@ export default function PreviousOrderInput() {
 
     function handleAddBundleToCart(bubbles, bundleName) {
         AddBundleToCart(bubbles);
-        updateAddedBundle(bundleName);
       }
 
     return (
@@ -72,7 +70,7 @@ export default function PreviousOrderInput() {
                 placeholder="Enter telephone" />
             </FormGroup>
             <Button className="btn btn-light px-5" onClick={() => handlePrevOrderSearch(phoneNumber)}>Search</Button>
-
+            <p>{error}</p>
             {previousOrders.map((data) => {
               return (
                 <div className="bundle text-center my-3" key={data.id}>
