@@ -56,7 +56,7 @@ export default function Bundles() {
         {bundles.map((data) => {
           return (
             <div className="bundle text-center my-3" key={data.id}>
-              <h2 className="p-2">{data.name}</h2>
+              <h2 className="pt-2">{data.name}</h2>
               <div className="card-deck justify-content-center">
                 {data.items.map((bubble) => {
                 return (

@@ -51,12 +51,28 @@ a:hover {
 .bundle-card {
 	height: 420px;
 	width: 330px;
+	margin-top: 5px;
 }
 
 .bundle-button {
 	width: 30%;
 	margin: 10px auto 0px;
 	justify-self: center;
+}
+
+table {
+	font-size: large;
+}
+.cart-item {
+	height: 100px;
+	align-items: center;
+	color: black;
+}
+
+.cart-item > img {
+	height: 100px;
+	width: 100px;
+	margin-right: 20px;
 }
 
 .modal {

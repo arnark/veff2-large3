@@ -30,40 +30,59 @@ export default function Cart() {
     
     if (cartItems.length > 0) {
       return (
-        <div>
-            <h1>Shopping Cart</h1>
-            <div id="products">
-            {cartItems.map((data) => {
-              return (
-                <div className="item-container" id={data.id} key={data.id}>
-                  <Link to={`/bubbles/${data.id}`}>
-                    <div className="item-name">
-                      <p>{data.name}</p>
-                    </div>
-                    <div className="item-image">
-                      <img src={data.image} />
-                    </div>
-                    <div className="item-price">
-                      <p>Price: {data.price} ISK</p>
-                    </div>
-                    <div className="item-quantity">
-                      <p>Quantity: {data.quantity}</p>
-                    </div>
-                  </Link>
-                </div>
-            )})
-            }
+        <div className="my-3">
+          <h2>Shopping Cart</h2>
+          <div id="products">
+            <table className="table mt-2">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th className="text-right">Quantity</th>
+                  <th className="text-right">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((data) => {
+                  return (
+                    <tr className="item-container" id={data.id} key={data.id}>
+                      <td>
+                        <Link to={`/bubbles/${data.id}`}>
+                          <div className="d-flex cart-item">
+                            <img src={data.image} />
+                            <p>{data.name}</p>
+                          </div>
+                        </Link>
+                      </td>
+                      <td className="align-middle text-right">
+                        <p>{data.quantity}</p>
+                      </td>
+                      <td className="align-middle text-right">
+                        <p>{data.price} ISK</p>
+                      </td>
+                    </tr>
+                  )})
+                }
+              </tbody>
+              <thead>
+                <tr>
+                  <th>Total</th>
+                  <th></th>
+                  <th className="text-right">{totalISK} ISK</th>
+                </tr>
+              </thead>
+            </table>
           </div>
-          <h1>Total: {totalISK} ISK</h1>
-          <button onClick={() => { ClearCart(); getItemObjects();}}>Clear Shopping Cart</button>
-          <Link to={'/checkout'}>CHECKOUT</Link>
+          <div className="d-flex justify-content-between">
+            <button className="btn btn-outline-danger" onClick={() => { ClearCart(); getItemObjects();}}>Clear Shopping Cart</button>
+            <Link className="btn btn-success px-5" to={'/checkout'}>Checkout</Link>
+          </div>
         </div>
       )
     } else {
       return (
-        <div>
-            <h1>Shopping Cart</h1>
-            <p>No products in shopping cart!!!!! Get shopping.</p>
+        <div className="my-3">
+          <h2>Shopping Cart</h2>
+          <h6>No products in shopping cart. Get shopping!!!!!</h6>
         </div>
       )
     }
