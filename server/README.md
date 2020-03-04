@@ -8,3 +8,6 @@ The server is run by running npm start or node index.js
 
 ## Documentation
 All documentation reside in http://localhost:3500/docs
+
+## Extras added
+/api/about - includes documentation

@@ -1,4 +1,12 @@
 {
+    "about": {
+        "image": "https://i.imgur.com/UoqLLcB.png",
+        "info": [
+            "Bubblify is a new player in the bubble industry, selling a wide range of bubbles for all occasions.",
+            "We have a great passion for bubbles and want to spread the joy they bring. We offer both single packages of bubbles as well as various bundles of different types of bubbles. Our bubbles are sold through our website and can either be delivered to our customers or picked up directly from us.",
+            "Don't miss out. Blow some bubbles and have some fun!"    
+        ]
+    },
     "products": [
         {
             "id": 1,

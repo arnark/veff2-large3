@@ -24,6 +24,10 @@ const checkExistence = (elems, res) => {
     return elems.length > 0 ? res.json(elems[0]) : res.status(404).send('Not found');
 };
 
+router.get('/about', (req, res) => {
+    return res.json(bubbleService.getAbout());
+});
+
 router.get('/bubbles', (req, res) => {
     return res.json(bubbleService.getProducts());
 });
@@ -52,7 +56,6 @@ router.get('/orders/:telephone', (req, res) => {
 router.post('/orders/:telephone', (req, res) => {
     const { telephone } = req.params;
     const order = req.body;
-    console.log(order);
     orders.hasOwnProperty(telephone) ? orders[telephone].push(order) : orders[telephone] = [order];
     return res.send(`Order for ${telephone} was successfully issued!`);
 });

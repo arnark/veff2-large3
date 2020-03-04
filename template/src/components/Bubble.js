@@ -77,7 +77,7 @@ export default function Bubble(props) {
 }
 
 /* 
-  props.mathc.params.bubbleId: required string representing a bubble id
+  props.match.params.bubbleId: required string representing a bubble id
 */
 Bubble.propTypes = {
   match: PropTypes.shape({

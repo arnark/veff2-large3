@@ -19,6 +19,38 @@
         "http"
     ],
     "paths":{
+        "/about":{
+            "get":{
+                "tags":[
+                    "About"
+                ],
+                "summary":"Get information about the company",
+                "description":"",
+                "operationId":"getAbout",
+                "consumes":[
+                    "application/json"
+                ],
+                "produces":[
+                    "application/json"
+                ],
+                "responses":{
+                    "200":{
+                        "description":"An object with basic company information",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "image":{
+                                    "type":"string"
+                                },
+                                "info":{
+                                    "type":"string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/bubbles":{
             "get":{
                 "tags":[

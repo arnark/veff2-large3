@@ -18,7 +18,7 @@ const BundleCheckoutOverlay = ({ handleClose, show, bundleName}) => {
 
 /* 
   handleClose: required function to handle overlay close
-  show: required boolean that decides wheter the overlay should be visible or not
+  show: required boolean that decides wether the overlay should be visible or not
   bundleName: the name of the bundle to be displayed
 */
 BundleCheckoutOverlay.propTypes = {
