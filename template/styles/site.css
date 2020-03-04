@@ -87,12 +87,11 @@ table {
   .modal-main {
 	position: fixed;
     background: white;
-    width: 50%;
-    height: 500px;
+    width: 30%;
+	padding-bottom: 5px;
     transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
-    border: 1px solid black
 }
   
   .display-block {
@@ -151,3 +150,8 @@ table {
   .cart-prev-order-title {
 	  margin-top: 15px;
   }
+
+  .item-container-overlay {
+	width: 60%;
+	margin: 0 auto;
+}

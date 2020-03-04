@@ -7,12 +7,10 @@ const BundleCheckoutOverlay = ({ handleClose, show, bundleName}) => {
 
     return (
       <div className={showHideClassName}>
-        <div className="modal-main">
-            <h1>{bundleName} added to cart!</h1>
-            <Link to={`/checkout`}>
-                <p>Go to checkout!!!!</p>
-            </Link>
-         <button onClick={handleClose}>close</button>
+        <div className="modal-main card text-center text-dark mb-1">
+          <h4 className="card-header">{bundleName} added to cart!</h4>
+          <Link to={'/checkout'} className="btn btn-block btn-success addToCart">Checkout</Link>
+          <button className="btn btn-block btn-light addToCart" onClick={handleClose}>Continue shopping</button>
         </div>
       </div>
     );

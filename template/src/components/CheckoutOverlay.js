@@ -7,31 +7,20 @@ const CheckoutOverlay = ({ handleClose, show, bubble}) => {
 
     return (
       <div className={showHideClassName}>
-        <div className="modal-main">
-         {bubble.map((data) => {
-             return (
-              <div key={data.id}>
-                <h1>{data.name} added to cart!</h1>
-                <div className="item-name">
-                  <p>{data.name}</p>
+
+        {bubble.map((data) => {
+            return (        
+            <div className="modal-main card text-center text-dark mb-1" key={data.id}>
+            <h4 className="card-header">{data.name} added to cart!</h4>
+              <div className="item-container-overlay" >
+                  <img className="card-img-top" src={data.image} />
+                  <p>{data.price} ISK</p>
                 </div>
-                <div className="item-image">
-                  <img src={data.image} />
-                </div>
-                <div className="item-description">
-                  <p>{data.description}</p>
-                </div>
-                <div className="item-price">
-                  <p>{data.price}</p>
-                </div>
-                <Link to={`/checkout`}>
-                    <p>Go to checkout!!!!</p>
-                </Link>
+                <Link to={'/checkout'} className="btn btn-block btn-success addToCart">Checkout</Link>
+                <button className="btn btn-block btn-light addToCart" onClick={handleClose}>Continue shopping</button>
               </div>
-             )})
-         }
-         <button onClick={handleClose}>close</button>
-        </div>
+          )})
+          }
       </div>
     );
 };
