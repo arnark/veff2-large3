@@ -58,6 +58,7 @@ export default function PreviousOrderInput() {
 
     function handleAddBundleToCart(bubbles, bundleName) {
         AddBundleToCart(bubbles);
+        window.location.href = "/cart";
       }
 
     return (
