@@ -41,7 +41,7 @@ export default function Checkout() {
         if (city === '') {
           errors.city = 'City is required.';
         }
-        if (postalCode === '') {
+        if (postalCode === '' || parseInt(postalCode) < 100 || parseInt(postalCode) > 999) {
           errors.postalCode = 'Postal code is required.';
         }
     }
