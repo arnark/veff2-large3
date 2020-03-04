@@ -89,7 +89,7 @@ export default function PreviousOrderInput() {
                     }
                   </div>
                   <div className="w-100 d-flex">
-                    <button className="btn btn-lg btn-outline-success bundle-button addToCart" onClick={() => handleAddBundleToCart(data.items, data.name)}>Add Bundle to Cart</button>
+                    <button className="btn btn-lg btn-outline-success bundle-button addToCart" onClick={() => handleAddBundleToCart(data.items, data.name)}>Add to Cart</button>
                   </div>
                 </div>
               )
