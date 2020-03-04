@@ -61,7 +61,7 @@ export default function PreviousOrderInput() {
     return (
       <div className="cart-prev-order">
         <h1 className="cart-prev-order-title">Previous orders</h1>
-          <Form>
+          <Form onSubmit={e => { e.preventDefault(); }} >
             <FormGroup>
               <label htmlFor="name">Telephone</label>
               <FormInput 
